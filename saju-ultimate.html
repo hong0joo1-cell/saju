@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="명리학 전문가 검증 - 정확한 사주 분석 서비스">
+  <title>전문가 사주 분석 - 당신의 운명을 읽다</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #D4A574;
+      --secondary: #E8D4C0;
+      --accent: #8B6F47;
+      --dark: #3D3D3D;
+      --light: #F9F7F4;
+      --border: #E0D5C7;
+      --white: #FFFFFF;
+      --success: #2E7D32;
+      --error: #C41E3A;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--white) 0%, var(--light) 100%);
+      padding: 3rem 1rem;
+      border-bottom: 2px solid var(--secondary);
+      box-shadow: 0 2px 12px rgba(212, 165, 116, 0.15);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: #999;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      padding: 0.7rem 1.5rem;
+      background-color: var(--light);
+      color: var(--accent);
+      border: 2px solid var(--primary);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .nav-btn:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+    }
+
+    .form-container {
+      background-color: var(--light);
+      padding: 2.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 2px solid var(--secondary);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background-color: var(--white);
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+      background-color: var(--light);
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn {
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(212, 165, 116, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .result-header {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--light) 100%);
+      padding: 2.5rem;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .result-header h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .result-header p {
+      color: #999;
+      font-size: 0.95rem;
+      margin: 0.3rem 0;
+    }
+
+    .result-section {
+      background-color: var(--white);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .result-section h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+
+    .result-section h4 {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .result-item {
+      background-color: var(--light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .result-item:hover {
+      box-shadow: 0 4px 12px rgba(212, 165, 116, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .result-item h5 {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .result-item p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-item ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .result-item li {
+      color: #666;
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      font-size: 0.9rem;
+    }
+
+    .result-item li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .info-box {
+      background-color: #E8F5E9;
+      border-left: 4px solid var(--success);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-box p {
+      color: #2E7D32;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .error-message {
+      background-color: #FFE8E8;
+      color: var(--error);
+      padding: 1.2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--error);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      background-color: var(--light);
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: #999;
+      border-top: 2px solid var(--secondary);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 0.3rem 0;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      .form-container {
+        padding: 1.5rem;
+      }
+
+      .result-section {
+        padding: 1.5rem;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-buttons {
+        gap: 0.5rem;
+      }
+
+      .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      .result-header h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media print {
+      header, footer, .nav-buttons {
+        display: none;
+      }
+
+      .result-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+
+      .btn {
+        display: none;
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-group .btn {
+      flex: 1;
+      min-width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌟 전문가 사주 분석</h1>
+    <p>명리학 전문가 검증 - 당신의 운명을 정확하게 분석합니다</p>
+  </header>
+
+  <div class="container">
+    <div class="nav-buttons">
+      <button class="nav-btn active" onclick="showPage('home')">홈</button>
+      <button class="nav-btn" onclick="showPage('analysis')">분석</button>
+      <button class="nav-btn" onclick="showPage('result')">결과</button>
+    </div>
+
+    <!-- 홈 페이지 -->
+    <div id="home" class="page active">
+      <div class="form-container">
+        <h2 style="color: #8B6F47; margin-bottom: 1.5rem; text-align: center; font-size: 1.8rem;">
+          당신의 사주를 분석해보세요
+        </h2>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem; line-height: 1.8;">
+          전통 명리학을 기반으로 한 정확한 사주 분석입니다.<br>
+          생년월일을 입력하면 상세한 분석 결과를 받을 수 있습니다.
+        </p>
+        <div style="text-align: center;">
+          <button class="btn btn-primary" onclick="showPage('analysis')">분석 시작하기</button>
+        </div>
+
+        <div class="info-box" style="margin-top: 2rem;">
+          <p><strong>📌 사주란?</strong> 태어난 연, 월, 일, 시의 천간과 지지로 이루어진 8개의 글자로 인간의 운명, 성격, 적성을 분석하는 동양의 전통 학문입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 분석 페이지 -->
+    <div id="analysis" class="page">
+      <div class="form-container">
+        <h2 style="color: #8B6F47; margin-bottom: 1.5rem; text-align: center; font-size: 1.5rem;">
+          사주 정보 입력
+        </h2>
+        <form id="analysisForm" onsubmit="handleAnalysis(event)">
+          <div class="form-group">
+            <label for="name">이름 *</label>
+            <input type="text" id="name" placeholder="예: 김철수" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="year">태어난 해 *</label>
+              <input type="number" id="year" placeholder="예: 1990" min="1900" max="2024" required>
+            </div>
+            <div class="form-group">
+              <label for="month">월 *</label>
+              <input type="number" id="month" placeholder="1-12" min="1" max="12" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="day">일 *</label>
+              <input type="number" id="day" placeholder="1-31" min="1" max="31" required>
+            </div>
+            <div class="form-group">
+              <label for="birthType">음력/양력 *</label>
+              <select id="birthType" required>
+                <option value="">선택하세요</option>
+                <option value="solar">양력</option>
+                <option value="lunar">음력</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="birthTime">시간 (선택)</label>
+              <input type="text" id="birthTime" placeholder="예: 14:30">
+            </div>
+            <div class="form-group">
+              <label for="ampm">오전/오후</label>
+              <select id="ampm">
+                <option value="AM">오전</option>
+                <option value="PM">오후</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary">분석하기</button>
+          </div>
+        </form>
+
+        <div class="info-box" style="margin-top: 2rem;">
+          <p><strong>💡 팁:</strong> 정확한 분석을 위해 가능하면 정확한 출생 시간을 입력해주세요.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결과 페이지 -->
+    <div id="result" class="page">
+      <div id="resultContent"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 전문가 사주 분석 서비스</p>
+    <p>이 서비스는 전통 명리학을 기반으로 하며 오락 및 참고용입니다.</p>
+  </footer>
+
+  <script>
+    // ==================== 기본 데이터 ====================
+    const CHEONGAN = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'];
+    const JIJI = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
+
+    const CHEONGAN_PROPERTY = {
+      '갑': { element: '목', yinyang: '양', order: 0 },
+      '을': { element: '목', yinyang: '음', order: 1 },
+      '병': { element: '화', yinyang: '양', order: 2 },
+      '정': { element: '화', yinyang: '음', order: 3 },
+      '무': { element: '토', yinyang: '양', order: 4 },
+      '기': { element: '토', yinyang: '음', order: 5 },
+      '경': { element: '금', yinyang: '양', order: 6 },
+      '신': { element: '금', yinyang: '음', order: 7 },
+      '임': { element: '수', yinyang: '양', order: 8 },
+      '계': { element: '수', yinyang: '음', order: 9 }
+    };
+
+    const JIJI_PROPERTY = {
+      '자': { element: '수', yinyang: '양', animal: '쥐', season: '겨울', hour: '23~1', order: 0 },
+      '축': { element: '토', yinyang: '음', animal: '소', season: '겨울', hour: '1~3', order: 1 },
+      '인': { element: '목', yinyang: '양', animal: '호랑이', season: '봄', hour: '3~5', order: 2 },
+      '묘': { element: '목', yinyang: '음', animal: '토끼', season: '봄', hour: '5~7', order: 3 },
+      '진': { element: '토', yinyang: '양', animal: '용', season: '봄', hour: '7~9', order: 4 },
+      '사': { element: '화', yinyang: '음', animal: '뱀', season: '여름', hour: '9~11', order: 5 },
+      '오': { element: '화', yinyang: '양', animal: '말', season: '여름', hour: '11~13', order: 6 },
+      '미': { element: '토', yinyang: '음', animal: '양', season: '여름', hour: '13~15', order: 7 },
+      '신': { element: '금', yinyang: '양', animal: '원숭이', season: '가을', hour: '15~17', order: 8 },
+      '유': { element: '금', yinyang: '음', animal: '닭', season: '가을', hour: '17~19', order: 9 },
+      '술': { element: '토', yinyang: '양', animal: '개', season: '가을', hour: '19~21', order: 10 },
+      '해': { element: '수', yinyang: '음', animal: '돼지', season: '겨울', hour: '21~23', order: 11 }
+    };
+
+    const CHEONGAN_ANALYSIS = {
+      '갑': {
+        name: '갑목(甲木)',
+        symbol: '양목(陽木)',
+        meaning: '큰 나무, 숲',
+        personality: '진취적이고 리더십이 있으며 정직하고 책임감이 강함',
+        strength: ['진취성', '정직함', '책임감', '추진력', '용감함'],
+        weakness: ['고집', '완고함', '과도한 자신감', '성급함'],
+        career: ['경영', '정치', '법률', '교육', '공무원', '건설'],
+        love: '진지하고 책임감 있는 연애, 가정을 중시',
+        health: '목 건강에 주의, 간 건강 관리 필요',
+        wealth: '꾸준한 재물 증가, 부동산 운 좋음',
+        fortune: '초년 고생, 중년 발전, 만년 안정'
+      },
+      '을': {
+        name: '을목(乙木)',
+        symbol: '음목(陰木)',
+        meaning: '작은 나무, 풀',
+        personality: '유연하고 감수성 풍부하며 창의적이고 친화력이 좋음',
+        strength: ['유연성', '감수성', '창의성', '친화력', '섬세함'],
+        weakness: ['우유부단함', '소극성', '감정 기복', '의존성'],
+        career: ['예술', '문학', '디자인', '상담', '음악', '교육'],
+        love: '감정적이고 섬세한 연애, 로맨틱함',
+        health: '신경 건강에 주의, 스트레스 관리 필요',
+        wealth: '변동하는 재물, 창의적 수입원 개발',
+        fortune: '초년 순탄, 중년 변화, 만년 안정'
+      },
+      '병': {
+        name: '병화(丙火)',
+        symbol: '양화(陽火)',
+        meaning: '태양, 큰 불',
+        personality: '활발하고 열정적이며 명랑하고 추진력이 강함',
+        strength: ['열정', '활발함', '명랑함', '추진력', '용감함'],
+        weakness: ['성급함', '과열', '충동성', '무분별함'],
+        career: ['영업', '마케팅', '공연', '스포츠', '정치', '미디어'],
+        love: '열정적이고 솔직한 연애, 표현력 풍부',
+        health: '심장 건강에 주의, 혈압 관리 필요',
+        wealth: '급격한 재물 변화, 사업 운 좋음',
+        fortune: '초년 발전, 중년 성공, 만년 안정'
+      },
+      '정': {
+        name: '정화(丁火)',
+        symbol: '음화(陰火)',
+        meaning: '촛불, 작은 불',
+        personality: '차분하고 신중하며 집중력이 있고 섬세함',
+        strength: ['신중함', '차분함', '집중력', '섬세함', '지혜'],
+        weakness: ['과도한 신중함', '소극성', '집착', '의심'],
+        career: ['연구', '학문', '의료', '공예', '상담', '종교'],
+        love: '진지하고 헌신적인 연애, 깊이 있는 감정',
+        health: '소화기 건강에 주의, 신경성 질환 주의',
+        wealth: '안정적인 재물, 저축 성향 강함',
+        fortune: '초년 고생, 중년 발전, 만년 번영'
+      },
+      '무': {
+        name: '무토(戊土)',
+        symbol: '양토(陽土)',
+        meaning: '높은 산, 큰 흙',
+        personality: '안정적이고 신뢰할 수 있으며 포용력이 있고 현실적',
+        strength: ['안정성', '신뢰성', '포용력', '현실성', '책임감'],
+        weakness: ['변화 거부', '고집', '둔함', '보수성'],
+        career: ['부동산', '건설', '농업', '관리', '금융', '공무원'],
+        love: '안정적이고 신뢰할 수 있는 연애, 헌신적',
+        health: '소화기 건강 양호, 정기적 운동 필요',
+        wealth: '부동산 재물, 안정적 수입',
+        fortune: '초년 순탄, 중년 번영, 만년 안정'
+      },
+      '기': {
+        name: '기토(己土)',
+        symbol: '음토(陰土)',
+        meaning: '낮은 땅, 작은 흙',
+        personality: '부드럽고 배려심이 있으며 친절하고 적응력이 좋음',
+        strength: ['배려심', '부드러움', '친절함', '적응력', '이해심'],
+        weakness: ['우유부단함', '의존성', '자신감 부족', '소극성'],
+        career: ['간호', '상담', '교육', '서비스', '요리', '미용'],
+        love: '헌신적이고 배려하는 연애, 희생정신 강함',
+        health: '소화기 건강에 주의, 스트레스 관리 필요',
+        wealth: '안정적인 재물, 저축 성향',
+        fortune: '초년 고생, 중년 발전, 만년 안정'
+      },
+      '경': {
+        name: '경금(庚金)',
+        symbol: '양금(陽金)',
+        meaning: '쇠, 도끼',
+        personality: '강인하고 결단력이 있으며 정의감이 있고 추진력 강함',
+        strength: ['강인함', '결단력', '정의감', '추진력', '용감함'],
+        weakness: ['가혹함', '경직됨', '무정함', '고집'],
+        career: ['군인', '경찰', '판사', '기술자', '스포츠', '건설'],
+        love: '강인하고 보호적인 연애, 신뢰감 강함',
+        health: '호흡기 건강에 주의, 정기적 운동 필요',
+        wealth: '급격한 재물 변화, 사업 운 좋음',
+        fortune: '초년 발전, 중년 성공, 만년 안정'
+      },
+      '신': {
+        name: '신금(辛金)',
+        symbol: '음금(陰金)',
+        meaning: '보석, 장식품',
+        personality: '민첩하고 영리하며 적응력이 있고 창의적',
+        strength: ['민첩함', '영리함', '적응력', '창의성', '섬세함'],
+        weakness: ['변덕', '신뢰성 부족', '과도한 계산', '이기심'],
+        career: ['무역', '금융', '기술', '통신', '디자인', '예술'],
+        love: '자유로운 연애, 독립적이고 영리함',
+        health: '호흡기 건강에 주의, 피부 건강 관리',
+        wealth: '변동하는 재물, 창의적 수입원',
+        fortune: '초년 순탄, 중년 변화, 만년 안정'
+      },
+      '임': {
+        name: '임수(壬水)',
+        symbol: '양수(陽水)',
+        meaning: '큰 물, 강',
+        personality: '지혜롭고 통찰력이 있으며 표현력이 좋고 적응력 강함',
+        strength: ['지혜', '통찰력', '표현력', '적응력', '포용력'],
+        weakness: ['우유부단함', '변덕', '감정 기복', '의존성'],
+        career: ['철학', '문학', '교육', '상담', '통신', '여행'],
+        love: '지적이고 깊이 있는 연애, 표현력 풍부',
+        health: '신장 건강에 주의, 수분 섭취 필요',
+        wealth: '변동하는 재물, 창의적 수입',
+        fortune: '초년 고생, 중년 발전, 만년 번영'
+      },
+      '계': {
+        name: '계수(癸水)',
+        symbol: '음수(陰水)',
+        meaning: '작은 물, 이슬',
+        personality: '예민하고 민감하며 섬세하고 창의적',
+        strength: ['예민함', '민감함', '섬세함', '창의성', '직관력'],
+        weakness: ['과도한 걱정', '신경과민', '의심', '소극성'],
+        career: ['예술', '연구', '상담', '디자인', '문학', '음악'],
+        love: '섬세하고 감정적인 연애, 로맨틱함',
+        health: '신장 건강에 주의, 스트레스 관리 필요',
+        wealth: '안정적인 재물, 저축 성향',
+        fortune: '초년 고생, 중년 발전, 만년 안정'
+      }
+    };
+
+    const JIJI_ANALYSIS = {
+      '자': { name: '쥐', element: '수', season: '겨울', hour: '23~1시', personality: '영리하고 민첩하며 사교성이 좋음', characteristic: '지혜, 민첩함, 사교성, 영리함' },
+      '축': { name: '소', element: '토', season: '겨울', hour: '1~3시', personality: '성실하고 안정적이며 인내심이 강함', characteristic: '성실, 안정, 인내, 신뢰' },
+      '인': { name: '호랑이', element: '목', season: '봄', hour: '3~5시', personality: '용감하고 진취적이며 리더십이 강함', characteristic: '용감, 진취, 리더십, 활발' },
+      '묘': { name: '토끼', element: '목', season: '봄', hour: '5~7시', personality: '온화하고 섬세하며 예술적 감각이 좋음', characteristic: '온화, 섬세, 예술, 친절' },
+      '진': { name: '용', element: '토', season: '봄', hour: '7~9시', personality: '웅대하고 자존심이 강하며 리더십이 있음', characteristic: '웅대, 자존, 리더십, 정의' },
+      '사': { name: '뱀', element: '화', season: '여름', hour: '9~11시', personality: '지혜롭고 신중하며 직관력이 뛰어남', characteristic: '지혜, 신중, 직관, 신비' },
+      '오': { name: '말', element: '화', season: '여름', hour: '11~13시', personality: '활발하고 자유로우며 사교성이 뛰어남', characteristic: '활발, 자유, 사교, 열정' },
+      '미': { name: '양', element: '토', season: '여름', hour: '13~15시', personality: '부드럽고 감정이 풍부하며 예술적 감각이 좋음', characteristic: '부드러움, 감정, 예술, 배려' },
+      '신': { name: '원숭이', element: '금', season: '가을', hour: '15~17시', personality: '영리하고 민첩하며 재미있는 성격', characteristic: '영리, 민첩, 재미, 창의' },
+      '유': { name: '닭', element: '금', season: '가을', hour: '17~19시', personality: '솔직하고 정직하며 책임감이 강함', characteristic: '솔직, 정직, 책임, 성실' },
+      '술': { name: '개', element: '토', season: '가을', hour: '19~21시', personality: '충성스럽고 신뢰할 수 있으며 정의감이 강함', characteristic: '충성, 신뢰, 정의, 친절' },
+      '해': { name: '돼지', element: '수', season: '겨울', hour: '21~23시', personality: '순진하고 착하며 포용력이 있음', characteristic: '순진, 착함, 포용, 친절' }
+    };
+
+    const OHAENG_ANALYSIS = {
+      '목': { name: '목(木)', meaning: '나무, 성장', color: ['초록색', '파란색'], number: [3, 8], direction: '동쪽', season: '봄', organ: '간, 담', emotion: '분노, 화남', virtue: '인(仁), 자비' },
+      '화': { name: '화(火)', meaning: '불, 열정', color: ['빨간색', '자주색'], number: [2, 7], direction: '남쪽', season: '여름', organ: '심장, 소장', emotion: '기쁨, 즐거움', virtue: '예(禮), 존경' },
+      '토': { name: '토(土)', meaning: '흙, 안정', color: ['노란색', '갈색'], number: [5, 10], direction: '중앙', season: '환절기', organ: '비장, 위', emotion: '생각, 걱정', virtue: '신(信), 신뢰' },
+      '금': { name: '금(金)', meaning: '금속, 정의', color: ['흰색', '은색'], number: [4, 9], direction: '서쪽', season: '가을', organ: '폐, 대장', emotion: '슬픔, 우울', virtue: '의(義), 정의' },
+      '수': { name: '수(水)', meaning: '물, 지혜', color: ['검은색', '파란색'], number: [1, 6], direction: '북쪽', season: '겨울', organ: '신장, 방광', emotion: '공포, 두려움', virtue: '지(智), 지혜' }
+    };
+
+    // ==================== 계산 함수 ====================
+    function calculateYearCheongan(year) {
+      const baseYear = 1984;
+      const diff = year - baseYear;
+      return CHEONGAN[diff % 10];
+    }
+
+    function calculateYearJiji(year) {
+      const baseYear = 1984;
+      const diff = year - baseYear;
+      return JIJI[diff % 12];
+    }
+
+    function calculateMonthCheongan(yearCheongan, month) {
+      const yearCheonganIndex = CHEONGAN.indexOf(yearCheongan);
+      const monthCheonganIndex = (yearCheonganIndex * 2 + month - 2) % 10;
+      return CHEONGAN[monthCheonganIndex];
+    }
+
+    function calculateMonthJiji(month) {
+      const monthJijiMap = {
+        1: '인', 2: '묘', 3: '진',
+        4: '사', 5: '오', 6: '미',
+        7: '신', 8: '유', 9: '술',
+        10: '해', 11: '자', 12: '축'
+      };
+      return monthJijiMap[month] || '인';
+    }
+
+    function calculateJulianDay(year, month, day) {
+      if (month <= 2) {
+        year--;
+        month += 12;
+      }
+      const a = Math.floor(year / 100);
+      const b = 2 - a + Math.floor(a / 4);
+      const jd = Math.floor(365.25 * (year + 4716)) + 
+                 Math.floor(30.6001 * (month + 1)) + 
+                 day + b - 1524.5;
+      return Math.floor(jd);
+    }
+
+    function calculateDayCheongan(year, month, day) {
+      const jd = calculateJulianDay(year, month, day);
+      const baseJd = calculateJulianDay(1984, 1, 1);
+      const diff = jd - baseJd;
+      return CHEONGAN[diff % 10];
+    }
+
+    function calculateDayJiji(year, month, day) {
+      const jd = calculateJulianDay(year, month, day);
+      const baseJd = calculateJulianDay(1984, 1, 1);
+      const diff = jd - baseJd;
+      return JIJI[diff % 12];
+    }
+
+    function calculateHourCheongan(dayCheongan, hour) {
+      const dayCheonganIndex = CHEONGAN.indexOf(dayCheongan);
+      let timeIndex = Math.floor(hour / 2);
+      if (hour >= 23 || hour < 1) {
+        timeIndex = 0;
+      }
+      const hourCheonganIndex = (dayCheonganIndex * 2 + timeIndex) % 10;
+      return CHEONGAN[hourCheonganIndex];
+    }
+
+    function calculateHourJiji(hour) {
+      let timeIndex;
+      if (hour >= 23 || hour < 1) timeIndex = 0;
+      else if (hour >= 1 && hour < 3) timeIndex = 1;
+      else if (hour >= 3 && hour < 5) timeIndex = 2;
+      else if (hour >= 5 && hour < 7) timeIndex = 3;
+      else if (hour >= 7 && hour < 9) timeIndex = 4;
+      else if (hour >= 9 && hour < 11) timeIndex = 5;
+      else if (hour >= 11 && hour < 13) timeIndex = 6;
+      else if (hour >= 13 && hour < 15) timeIndex = 7;
+      else if (hour >= 15 && hour < 17) timeIndex = 8;
+      else if (hour >= 17 && hour < 19) timeIndex = 9;
+      else if (hour >= 19 && hour < 21) timeIndex = 10;
+      else if (hour >= 21 && hour < 23) timeIndex = 11;
+      return JIJI[timeIndex];
+    }
+
+    function calculateCompleteSaju(year, month, day, hour) {
+      const yearCheongan = calculateYearCheongan(year);
+      const yearJiji = calculateYearJiji(year);
+      const monthCheongan = calculateMonthCheongan(yearCheongan, month);
+      const monthJiji = calculateMonthJiji(month);
+      const dayCheongan = calculateDayCheongan(year, month, day);
+      const dayJiji = calculateDayJiji(year, month, day);
+      
+      let hourCheongan = '미입력';
+      let hourJiji = '미입력';
+      
+      if (hour !== null && hour !== undefined && hour !== '') {
+        hourCheongan = calculateHourCheongan(dayCheongan, hour);
+        hourJiji = calculateHourJiji(hour);
+      }
+      
+      return {
+        year: { cheongan: yearCheongan, jiji: yearJiji },
+        month: { cheongan: monthCheongan, jiji: monthJiji },
+        day: { cheongan: dayCheongan, jiji: dayJiji },
+        hour: { cheongan: hourCheongan, jiji: hourJiji }
+      };
+    }
+
+    // ==================== UI 함수 ====================
+    function showPage(pageName) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageName).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      const buttons = document.querySelectorAll('.nav-btn');
+      const pageNames = ['home', 'analysis', 'result'];
+      const index = pageNames.indexOf(pageName);
+      if (index !== -1 && buttons[index]) {
+        buttons[index].classList.add('active');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function handleAnalysis(event) {
+      event.preventDefault();
+
+      try {
+        const name = document.getElementById('name').value.trim();
+        const year = parseInt(document.getElementById('year').value);
+        const month = parseInt(document.getElementById('month').value);
+        const day = parseInt(document.getElementById('day').value);
+        const birthType = document.getElementById('birthType').value;
+        const birthTime = document.getElementById('birthTime').value.trim();
+        const ampm = document.getElementById('ampm').value;
+
+        if (!name) {
+          alert('이름을 입력해주세요.');
+          return;
+        }
+
+        if (isNaN(year) || year < 1900 || year > 2024) {
+          alert('올바른 연도를 입력해주세요. (1900~2024)');
+          return;
+        }
+
+        if (isNaN(month) || month < 1 || month > 12) {
+          alert('올바른 월을 입력해주세요. (1~12)');
+          return;
+        }
+
+        if (isNaN(day) || day < 1 || day > 31) {
+          alert('올바른 일을 입력해주세요. (1~31)');
+          return;
+        }
+
+        let hour = null;
+        if (birthTime) {
+          const timeParts = birthTime.split(':');
+          if (timeParts.length > 0) {
+            hour = parseInt(timeParts[0]);
+            if (ampm === 'PM' && hour !== 12) {
+              hour += 12;
+            } else if (ampm === 'AM' && hour === 12) {
+              hour = 0;
+            }
+          }
+        }
+
+        const saju = calculateCompleteSaju(year, month, day, hour);
+        const dayCheongan = saju.day.cheongan;
+        const dayJiji = saju.day.jiji;
+
+        const cheonganData = CHEONGAN_ANALYSIS[dayCheongan];
+        const jijiData = JIJI_ANALYSIS[dayJiji];
+
+        let html = `
+          <div class="result-header">
+            <h2>${name}님의 사주 분석</h2>
+            <p>${year}년 ${month}월 ${day}일 (${birthType === 'solar' ? '양력' : '음력'}) ${birthTime ? `${ampm === 'AM' ? '오전' : '오후'} ${birthTime}` : ''}</p>
+          </div>
+
+          <div class="result-section">
+            <h3>📊 기본 정보 (사주팔자)</h3>
+            <div class="result-grid">
+              <div class="result-item">
+                <h5>연주 (年柱)</h5>
+                <p><strong>${saju.year.cheongan}${saju.year.jiji}</strong></p>
+              </div>
+              <div class="result-item">
+                <h5>월주 (月柱)</h5>
+                <p><strong>${saju.month.cheongan}${saju.month.jiji}</strong></p>
+              </div>
+              <div class="result-item">
+                <h5>일주 (日柱)</h5>
+                <p><strong>${saju.day.cheongan}${saju.day.jiji}</strong></p>
+              </div>
+              <div class="result-item">
+                <h5>시주 (時柱)</h5>
+                <p><strong>${saju.hour.cheongan}${saju.hour.jiji}</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>🎭 일간 분석 (日干分析)</h3>
+            <div class="result-grid">
+              <div class="result-item">
+                <h5>일간</h5>
+                <p><strong>${dayCheongan}</strong></p>
+                <p>${cheonganData.name}</p>
+                <p style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">${cheonganData.symbol}</p>
+              </div>
+              <div class="result-item">
+                <h5>오행</h5>
+                <p><strong>${cheonganData.element}</strong></p>
+                <p>${CHEONGAN_PROPERTY[dayCheongan].yinyang}</p>
+              </div>
+              <div class="result-item">
+                <h5>일지</h5>
+                <p><strong>${dayJiji}</strong></p>
+                <p>${jijiData.name}</p>
+              </div>
+              <div class="result-item">
+                <h5>계절</h5>
+                <p><strong>${jijiData.season}</strong></p>
+                <p>${jijiData.hour}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>💭 성격 분석</h3>
+            <div class="result-item">
+              <h5>핵심 성격</h5>
+              <p>${cheonganData.personality}</p>
+            </div>
+            <div class="result-grid" style="margin-top: 1.5rem;">
+              <div class="result-item">
+                <h5>강점</h5>
+                <ul>
+                  ${cheonganData.strength.map(s => `<li>${s}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="result-item">
+                <h5>약점</h5>
+                <ul>
+                  ${cheonganData.weakness.map(w => `<li>${w}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>💼 직업 운세</h3>
+            <div class="result-item">
+              <h5>적합한 직업</h5>
+              <ul>
+                ${cheonganData.career.map(job => `<li>${job}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>❤️ 연애 운세</h3>
+            <div class="result-item">
+              <p>${cheonganData.love}</p>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>💪 건강 운세</h3>
+            <div class="result-item">
+              <p>${cheonganData.health}</p>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>💰 재물 운세</h3>
+            <div class="result-item">
+              <p>${cheonganData.wealth}</p>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>🌍 오행 정보</h3>
+            <div class="result-grid">
+              <div class="result-item">
+                <h5>오행의 의미</h5>
+                <p>${OHAENG_ANALYSIS[cheonganData.element].meaning}</p>
+              </div>
+              <div class="result-item">
+                <h5>행운의 색상</h5>
+                <p>${OHAENG_ANALYSIS[cheonganData.element].color.join(', ')}</p>
+              </div>
+              <div class="result-item">
+                <h5>행운의 숫자</h5>
+                <p>${OHAENG_ANALYSIS[cheonganData.element].number.join(', ')}</p>
+              </div>
+              <div class="result-item">
+                <h5>행운의 방향</h5>
+                <p>${OHAENG_ANALYSIS[cheonganData.element].direction}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-section">
+            <h3>📋 인생 운세</h3>
+            <div class="result-item">
+              <p>${cheonganData.fortune}</p>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="showPage('analysis')">다시 분석하기</button>
+            <button class="btn btn-primary" onclick="window.print()">인쇄하기</button>
+          </div>
+
+          <div class="info-box" style="margin-top: 2rem;">
+            <p><strong>📌 주의사항:</strong> 본 분석은 전통 명리학을 기반으로 하며 오락 및 참고용입니다. 중요한 결정은 전문가와 상담하시기 바랍니다.</p>
+          </div>
+        `;
+
+        document.getElementById('resultContent').innerHTML = html;
+        showPage('result');
+      } catch (error) {
+        console.error('분석 오류:', error);
+        alert('분석 중 오류가 발생했습니다. 입력값을 확인해주세요.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('analysisForm');
+      if (form) {
+        form.addEventListener('submit', handleAnalysis);
+      }
+      showPage('home');
+    });
+  </script>
+</body>
+</html>
