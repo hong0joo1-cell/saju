@@ -1,0 +1,533 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "09d4ac95-f191-4ead-b7c0-88d65a5f6974",
+  "prevId": "a957c99c-617b-420d-8dfb-63a706bbb756",
+  "tables": {
+    "chat_history": {
+      "name": "chat_history",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sajuId": {
+          "name": "sajuId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "enum('user','assistant')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "chat_history_id": {
+          "name": "chat_history_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "compatibility_analysis": {
+      "name": "compatibility_analysis",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "firstSajuId": {
+          "name": "firstSajuId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "firstName": {
+          "name": "firstName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "firstGender": {
+          "name": "firstGender",
+          "type": "enum('M','F')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "firstDayStem": {
+          "name": "firstDayStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "firstDayBranch": {
+          "name": "firstDayBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "secondSajuId": {
+          "name": "secondSajuId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "secondName": {
+          "name": "secondName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "secondGender": {
+          "name": "secondGender",
+          "type": "enum('M','F')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "secondDayStem": {
+          "name": "secondDayStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "secondDayBranch": {
+          "name": "secondDayBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "compatibilityScore": {
+          "name": "compatibilityScore",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "analysis": {
+          "name": "analysis",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "compatibility_analysis_id": {
+          "name": "compatibility_analysis_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "saju_analysis": {
+      "name": "saju_analysis",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "birthYear": {
+          "name": "birthYear",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "birthMonth": {
+          "name": "birthMonth",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "birthDay": {
+          "name": "birthDay",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "birthHour": {
+          "name": "birthHour",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "birthMinute": {
+          "name": "birthMinute",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "gender": {
+          "name": "gender",
+          "type": "enum('M','F')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "yearStem": {
+          "name": "yearStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "yearBranch": {
+          "name": "yearBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "monthStem": {
+          "name": "monthStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "monthBranch": {
+          "name": "monthBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "dayStem": {
+          "name": "dayStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "dayBranch": {
+          "name": "dayBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timeStem": {
+          "name": "timeStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timeBranch": {
+          "name": "timeBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "woodStrength": {
+          "name": "woodStrength",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fireStrength": {
+          "name": "fireStrength",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "earthStrength": {
+          "name": "earthStrength",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "metalStrength": {
+          "name": "metalStrength",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "waterStrength": {
+          "name": "waterStrength",
+          "type": "decimal(5,2)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tenStemsAnalysis": {
+          "name": "tenStemsAnalysis",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "majorPeriodStartAge": {
+          "name": "majorPeriodStartAge",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "majorPeriodStem": {
+          "name": "majorPeriodStem",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "majorPeriodBranch": {
+          "name": "majorPeriodBranch",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "memo": {
+          "name": "memo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "saju_analysis_id": {
+          "name": "saju_analysis_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "openId": {
+          "name": "openId",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(320)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "loginMethod": {
+          "name": "loginMethod",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "enum('user','admin')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'user'"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
+        },
+        "lastSignedIn": {
+          "name": "lastSignedIn",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "users_id": {
+          "name": "users_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "users_openId_unique": {
+          "name": "users_openId_unique",
+          "columns": [
+            "openId"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
